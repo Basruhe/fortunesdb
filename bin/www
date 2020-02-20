@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+// This is called a shebang line.
+
+const app = require('../app');
+const port = 3000;
+
+// without a host name as a second parameter, the host name is automatically set to localhost
+app.listen(port, () => console.log(`Express server listening on port ${port}`));
+
+
+// This executable file is responsible for starting the app. The basic startup lines from the index.js have been moved here. 
