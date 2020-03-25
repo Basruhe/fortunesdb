@@ -44,8 +44,8 @@ const writeFortunes = json => {
 };
 
 // Post to add fortunes
-// You can no longer test this with the express server. Rather than creating an entire frontend to test, we can use httpie or curl(which is a lot more work)
-// To Use: http :3000/fortunes "lucky_number"=x "message"="y" etc
+// Postman: POST http://localhost:3000/fortunes. add a new fortune json object as 'body'.
+// Httpie: http :3000/fortunes "lucky_number"=x "message"="y" etc
 app.post("/fortunes", (req, res) => {
   console.log(req.body);
   // First; convert json body into a fortune object
@@ -78,8 +78,8 @@ app.post("/fortunes", (req, res) => {
 
 // PUT method
 // Looks like a combination of the get single method, and post method. You first retrieve the desired element, then change and return it
-// To use: http :3000 ? doesnt work with httpie?
-// Does work in postman
+// Doesnt work with httpie?
+// Postman: PUT http://localhost:3000/fortunes/x  Add a new(changed) property ad json body
 app.put("/fortunes/:id", (req, res) => {
   // console.log(req.body);
   const { id } = req.params;
@@ -101,7 +101,7 @@ app.put("/fortunes/:id", (req, res) => {
 });
 
 // Delete method
-// To use:
+// Postman: DELETE http://localhost:3000/fortunes/x
 app.delete("/fortunes/:id", (req, res) => {
   const { id } = req.params;
   const new_fortunes = fortunes.filter(f => f.id != id);
