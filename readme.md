@@ -1,34 +1,41 @@
-Readme.
-
-To start: Npm run start
-To test/use: Run in Postman (not all commands will work in httphie)
-http://localhost:3000/fortunes
+## Fortunes API
 
 This exercise project is a simple express server with an API.
-Users have access to a list of fortunes (properties: id, lucky_number, spirit_animal, message) Fortunes are saved in a hardcoded fortunes.json file with writefile.
+Project goal: API with fortunes. Users have access to a list of fortunes (properties are: id, lucky_number, spirit_animal, message). Fortunes can be requested, created, edited and deleted.
+
+## User Guide
+
+- To start: Npm run start
+- To test/use: Run in Postman (Note: not all commands will work in httphie)
+  http://localhost:3000/fortunes
 
 From a list of fortunes, users can:
 
-- Request a random fortune
-  Postman: GET http://localhost:3000/fortunes/random
-  Httpie: http :3000/fortunes/random
+Request a random fortune
 
-- Request a single fortune by ID
-  Postman: GET http://localhost:3000/fortunes/x
-  Httpie: http :/3000/fortunes/x
+- Postman: GET http://localhost:3000/fortunes/random
+- Httpie: http :3000/fortunes/random
 
-- Add a fortune
-  Postman: POST http://localhost:3000/fortunes. add a new fortune json object as 'body'.
-  Httpie: http :3000/fortunes "lucky_number"=x "message"="y"
+Request a single fortune by ID
 
-- Change a fortune
-  Postman: PUT http://localhost:3000/fortunes/x Add a new(changed) property as json body
+- Postman: GET http://localhost:3000/fortunes/x
+- Httpie: http :/3000/fortunes/x
 
-- Delete a fortune
-  Postman: DELETE http://localhost:3000/fortunes/x
+Add a fortune
 
-To Do:
-Turn into full stack app:
+- Postman: POST http://localhost:3000/fortunes. add a new fortune json object as 'body'.
+- Httpie: http :3000/fortunes "lucky_number"=x "message"="y"
 
-- Create react frontend
-- Create actual database
+Change a fortune
+
+- Postman: PUT http://localhost:3000/fortunes/x Add a new(changed) property as json body
+
+Delete a fortune
+
+- Postman: DELETE http://localhost:3000/fortunes/x
+
+### To Do:
+
+My next steps for this project:
+1 Replace writefile with a PostGres database.
+2 Create React frontend with a UI for user interaction.
