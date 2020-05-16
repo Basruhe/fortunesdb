@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const fortunes = require("./data/fortunes.json");
 const fs = require("fs"); // filesave
 
+// Planning:
+
 // Middleware is a bridge between data and applications, to establish a common form of communication. In this case, we parse json. Allows to receive and use json data
 app.use(bodyParser.json());
 
@@ -33,12 +35,12 @@ app.get("/fortunes/:id", (req, res) => {
   // Note: the colon in the path signifies that the nested route needs to be stored as a parameter in the request object. In this case, the request object is then passed as a paramameter to fortunes.find, which checks each fortune individually (f) and returns the ones that matches with the req.params.id
   // console.log(req.params);
   // console.log(req.params.id);
-  res.json(fortunes.find(f => f.id == req.params.id));
+  res.json(fortunes.find((f) => f.id == req.params.id));
   // todo: error handling
 });
 
-const writeFortunes = json => {
-  fs.writeFile("./data/fortunes.json", JSON.stringify(json), err =>
+const writeFortunes = (json) => {
+  fs.writeFile("./data/fortunes.json", JSON.stringify(json), (err) =>
     console.log(err)
   );
 };
@@ -51,12 +53,12 @@ app.post("/fortunes", (req, res) => {
   // First; convert json body into a fortune object
   const { message, lucky_number, spirit_animal } = req.body;
   // next step; generating a new ID. Take just the ids from the fortunes array and save them in a new array.
-  const fortune_ids = fortunes.map(f => f.id);
+  const fortune_ids = fortunes.map((f) => f.id);
   const fortune = {
     id: (fortune_ids.length > 0 ? Math.max(...fortune_ids) : 0) + 1,
     message,
     lucky_number,
-    spirit_animal
+    spirit_animal,
   };
   // // Alternate method (should be ok too, right? or can get errors?):
   // const fortune = {
@@ -84,12 +86,12 @@ app.put("/fortunes/:id", (req, res) => {
   // console.log(req.body);
   const { id } = req.params;
   const { message, lucky_number, spirit_animal } = req.body;
-  const old_fortune = fortunes.find(f => f.id == id);
+  const old_fortune = fortunes.find((f) => f.id == id);
   // if (message) old_fortune.message = message;
   // if (lucky_number) old_fortune.lucky_number = lucky_number;
   // if (spirit_animal) old_fortune.spirit_animal = spirit_animal;
   // // replaced into:
-  ["message", "lucky_number", "spirit_animal"].forEach(key => {
+  ["message", "lucky_number", "spirit_animal"].forEach((key) => {
     if (req.body[key]) old_fortune[key] = req.body[key];
   });
 
@@ -104,7 +106,7 @@ app.put("/fortunes/:id", (req, res) => {
 // Postman: DELETE http://localhost:3000/fortunes/x
 app.delete("/fortunes/:id", (req, res) => {
   const { id } = req.params;
-  const new_fortunes = fortunes.filter(f => f.id != id);
+  const new_fortunes = fortunes.filter((f) => f.id != id);
   writeFortunes(new_fortunes);
   res.json(fortunes);
 });

@@ -3,7 +3,6 @@
 This exercise project is a simple express server with an API.
 Project goal: API with fortunes. Users have access to a list of fortunes (properties are: id, lucky_number, spirit_animal, message). Fortunes can be requested, created, edited and deleted.
 
-TESTING
 
 ## User Guide
 
